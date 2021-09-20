@@ -1,13 +1,12 @@
-import React from 'react'
+import React from 'react';
+import { Movie } from './Movie';
 
-export const MovieList = ({movies}) => {
-    return (
-        <div>
-            {movies.map((movie, index) => {
-                return (
-                    <img src={movie.Poster} alt={movie.title}></img>
-                )
-            })}
-        </div>
-    )
-}
+export const MovieList = ({ movies }) => {
+	return (
+		<>
+			{movies.map((movie, index) => {
+				return <Movie movie={movie}></Movie>;
+			})}
+		</>
+	);
+};
