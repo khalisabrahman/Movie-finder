@@ -1,4 +1,4 @@
-import React, { useReducer, createContext } from 'react';
+import React, { useReducer, createContext , useState} from 'react';
 import MovieReducer from './MovieReducer';
 
 // Create initial state
@@ -11,20 +11,21 @@ export const MovieContext = createContext(initialState);
 
 // Provider component
 export const MovieProvider = (props) => {
+    const [test, setTest] = useState(false);
 
     const [state, dispatch] = useReducer(MovieReducer, initialState);
 
     const setSearchText = (text) => {
         dispatch({
             type: "SET_SEARCH",
-            payload: text
+            payload: { text: state.text}
         })
     }
 
     const setMovies = (movie) => {
         dispatch({
             type: "SET_MOVIES",
-            payload: movie
+            payload: { movie: state.movies }
         })
     }
     return (
@@ -32,8 +33,10 @@ export const MovieProvider = (props) => {
         value={{
             movies: state.movies,
             text: state.text,
+            test: test,
             setSearchText,
-            setMovies
+            setMovies,
+            setTest
         }}>
             {props.children}
         </MovieContext.Provider>

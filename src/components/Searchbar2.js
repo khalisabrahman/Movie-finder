@@ -1,15 +1,17 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { MovieContext } from '../context/MovieState';
+import {MovieList} from './MovieList';
 
 let omdbApi = process.env.REACT_APP_OMDB_API;
 
-export const Searchbar2 = ({ searchValue, setSearchValue }) => {
+export const Searchbar2 = () => {
 	const context = useContext(MovieContext);
 	console.log(context);
 	const [movies, setMovies] = useState([]);
 
 	const getMoviesRequest = async (text) => {
 		const url = `http://www.omdbapi.com/?s=${context.text}&apikey=${omdbApi}`;
+		console.log(url);
 
 		const response = await fetch(url);
 		const responseJson = await response.json();
@@ -23,17 +25,18 @@ export const Searchbar2 = ({ searchValue, setSearchValue }) => {
 
 	useEffect(() => {
 		getMoviesRequest(context.text);
-		
 	}, [context.text]);
 
-
 	return (
-		<fieldset>
-			<input
-				placeholder='Type to search...'
-				value={context.text}
-				onChange={(event) => context.setSearchText(event.target.value)}
-			></input>
-		</fieldset>
+		<>
+			<fieldset>
+				<input
+					placeholder='Type to search...'
+					value={context.text}
+					onChange={(event) => context.setSearchText(event.target.value)}
+				></input>
+			</fieldset>
+			<MovieList movies={movies}/>
+		</>
 	);
 };

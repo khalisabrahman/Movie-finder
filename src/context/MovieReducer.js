@@ -1,7 +1,7 @@
 const MovieReducer = (state, action) => {
     switch (action.type) {
         case 'SET_SEARCH' :
-            return action.payload;
+            return action.payload.text;
             default: 
             return state;
     }

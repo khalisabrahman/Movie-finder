@@ -1,27 +1,35 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext, useReducer } from 'react';
 import { MovieList } from './components/MovieList';
 import { Subtitle } from './components/Subtitle';
 import { Clock } from './components/Clock';
 import { Clock2 } from './components/Clock2';
 import { Searchbar } from './components/Searchbar';
 import { AddFavourites } from './components/AddFavourites';
-import  {MovieProvider}  from './context/MovieState';
+import { MovieProvider } from './context/MovieState';
 import { MovieContext } from './context/MovieState';
-import {Searchbar2} from './components/Searchbar2';
-
-
-
+import { Searchbar2 } from './components/Searchbar2';
 
 let omdbApi = process.env.REACT_APP_OMDB_API;
 
+function reducer(state, action) {
+	return { count: state.count + 1 }
+}
+
+
 function App() {
-  const context = useContext(MovieContext);
-  console.log(context.text);
-  console.log(context.movies);
+	const [state, dispatch] = useReducer(reducer, { count: 0 });
+
+	const context = useContext(MovieContext);
+	console.log(context.text);
+	console.log(context.movies);
 
 	// const [time, setTime] = useState('');
 	const [movies, setMovies] = useState([]);
 	const [searchValue, setSearchValue] = useState('');
+
+	function increment() {
+		dispatch()
+	}
 
 	const getMoviesRequest = async (searchValue) => {
 		const url = `http://www.omdbapi.com/?s=${searchValue}&apikey=${omdbApi}`;
@@ -41,24 +49,26 @@ function App() {
 	// 	setTime(time);
 	// };
 
-  // setInterval(tick, 1000);
+	// setInterval(tick, 1000);
 
 	useEffect(() => {
 		getMoviesRequest(searchValue);
-		
 	}, [searchValue]);
 
 	return (
 		<MovieProvider>
 			<h1>Movie Finder</h1>
-      <Searchbar2 />
-			<Searchbar searchValue={searchValue} setSearchValue={setSearchValue} />
+			{/* <button onClick={}>-</button> */}
+			<span>{state.count}</span>
+			<button onClick={increment}>+</button>
+			<Searchbar2 />
+			{/* <Searchbar searchValue={searchValue} setSearchValue={setSearchValue} /> */}
 			{/* <h2>{time}</h2>
 			<Clock />
 			<Clock2 time={time} /> */}
 			<MovieList movies={movies} />
 			<Subtitle subtitle='Favourites' />
-      <AddFavourites />
+			<AddFavourites />
 		</MovieProvider>
 	);
 }
