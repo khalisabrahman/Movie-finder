@@ -2,8 +2,10 @@ import React from 'react';
 
 export const Movie = ({ movie }) => {
 	return (
-		<div>
+		<div >
 			<img src={movie.Poster} alt={movie.title}  style={{position: 'relative'}}></img>
+			<h1>{movie.Title}</h1>
+			<h2>{movie.Year}</h2>
 			<div
 				style={{
 					position: 'absolute',
@@ -14,7 +16,7 @@ export const Movie = ({ movie }) => {
                     color: 'white'
 				}}
 			>
-				whyyyyy
+				why is it not appearing?
 			</div>
 		</div>
 	);

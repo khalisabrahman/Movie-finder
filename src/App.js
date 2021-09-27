@@ -11,25 +11,52 @@ import { Searchbar2 } from './components/Searchbar2';
 
 let omdbApi = process.env.REACT_APP_OMDB_API;
 
-function reducer(state, action) {
-	return { count: state.count + 1 }
+function reducer(todos, action) {
+	switch (action.type) {
+		case ACTIONS.ADD_TODO:
+			return [...todos, newTodo(action.payload.name)]
+			default:
+				return todos;
+	}
+	
+}
+
+function movieReducer(state, action) {
+	switch (action.type) {
+		// case ACTIONS.ADD_MOVIE_TEXT: 
+		// 	return action.payload;
+		case ACTIONS.ADD_MOVIE:
+			return  action.payload;
+			default:
+				return state;
+		
+	}
+}
+const ACTIONS = {
+	ADD_TODO: 'add-todo',
+	ADD_MOVIE: 'add-movie'
 }
 
 
-function App() {
-	const [state, dispatch] = useReducer(reducer, { count: 0 });
 
-	const context = useContext(MovieContext);
-	console.log(context.text);
-	console.log(context.movies);
+function newTodo(name) {
+	return { id: Date.now(), name: name, complete: false}
+}
+
+function App() {
+	// const [todos, dispatch] = useReducer(reducer, []);
+	const [movies, dispatch] = useReducer(movieReducer, [])
+	const [name, setName] = useState('');
+	
+
+	// const context = useContext(MovieContext);
+	// console.log(context.text);
+	// console.log(context.movies);
 
 	// const [time, setTime] = useState('');
-	const [movies, setMovies] = useState([]);
+	// const [movies, setMovies] = useState([]);
 	const [searchValue, setSearchValue] = useState('');
 
-	function increment() {
-		dispatch()
-	}
 
 	const getMoviesRequest = async (searchValue) => {
 		const url = `http://www.omdbapi.com/?s=${searchValue}&apikey=${omdbApi}`;
@@ -37,8 +64,15 @@ function App() {
 		const response = await fetch(url);
 		const responseJson = await response.json();
 
+		console.log(responseJson);
 		if (responseJson.Search) {
-			setMovies(responseJson.Search);
+			// setMovies(responseJson.Search);
+			dispatch({
+				type: ACTIONS.ADD_MOVIE,
+				payload: responseJson.Search
+			})
+
+			console.log(movies);
 		} else {
 			return;
 		}
@@ -55,14 +89,29 @@ function App() {
 		getMoviesRequest(searchValue);
 	}, [searchValue]);
 
+	
+
+	
+	
+
+	// function handleSubmit(e) {
+	// 	e.preventDefault();
+	// 	dispatch({
+	// 		type: ACTIONS.ADD_TODO,
+	// 		payload: { name: name }
+	// 	});
+	// 	setName('');
+	// 	// console.log(todos);
+	// }
+
 	return (
 		<MovieProvider>
 			<h1>Movie Finder</h1>
-			{/* <button onClick={}>-</button> */}
-			<span>{state.count}</span>
-			<button onClick={increment}>+</button>
-			<Searchbar2 />
-			{/* <Searchbar searchValue={searchValue} setSearchValue={setSearchValue} /> */}
+			{/* <form onSubmit={handleSubmit}>
+				<input type="text" value={name} onChange={e => setName(e.target.value)}/>
+			</form> */}
+			{/* <Searchbar2 /> */}
+			<Searchbar searchValue={searchValue} setSearchValue={setSearchValue} />
 			{/* <h2>{time}</h2>
 			<Clock />
 			<Clock2 time={time} /> */}
