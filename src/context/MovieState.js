@@ -1,9 +1,10 @@
-import React, { useReducer, createContext , useState} from 'react';
+import React, { useReducer, createContext, useState } from 'react';
+import { ACTIONS } from '../types/types'
 import MovieReducer from './MovieReducer';
 
 // Create initial state
 const initialState = {
-    text: '',
+    searchValue: 'whyyyy',
     movies: []
 };
 // Create context
@@ -11,32 +12,32 @@ export const MovieContext = createContext(initialState);
 
 // Provider component
 export const MovieProvider = (props) => {
-    const [test, setTest] = useState(false);
+    const [state, dispatch] = useReducer(MovieReducer, initialState)
+	// const [searchValue, setSearchValue] = useState('');
 
-    const [state, dispatch] = useReducer(MovieReducer, initialState);
-
-    const setSearchText = (text) => {
+    const setSearchValue = (event) => {
+        const { value } = event.target;
         dispatch({
-            type: "SET_SEARCH",
-            payload: { text: state.text}
+            type: ACTIONS.SET_SEARCH,
+            payload: value
         })
+
+        console.log(state.searchValue);
     }
 
-    const setMovies = (movie) => {
-        dispatch({
-            type: "SET_MOVIES",
-            payload: { movie: state.movies }
-        })
-    }
+    // const setMovies = (movie) => {
+    //     dispatch({
+    //         type: "SET_MOVIES",
+    //         payload: { movie: state.movies }
+    //     })
+    // }
     return (
         <MovieContext.Provider
         value={{
-            movies: state.movies,
-            text: state.text,
-            test: test,
-            setSearchText,
-            setMovies,
-            setTest
+            searchValue: state.searchValue,
+            setSearchValue,
+
+            
         }}>
             {props.children}
         </MovieContext.Provider>
