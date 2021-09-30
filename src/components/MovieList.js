@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Movie } from './Movie';
+import {MovieContext} from '../context/MovieState';
 
-export const MovieList = ({ movies }) => {
+export const MovieList = () => {
+	const { movies } = useContext(MovieContext);
 	return (
 		<>
 			{movies.map((movie) => {

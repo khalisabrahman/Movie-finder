@@ -1,6 +1,7 @@
 import React from 'react';
 
 export const Searchbar = ({ searchValue, setSearchValue }) => {
+
 	return (
 		<fieldset>
 			<input

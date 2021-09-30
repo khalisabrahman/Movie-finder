@@ -25,17 +25,20 @@ export const MovieProvider = (props) => {
         console.log(state.searchValue);
     }
 
-    // const setMovies = (movie) => {
-    //     dispatch({
-    //         type: "SET_MOVIES",
-    //         payload: { movie: state.movies }
-    //     })
-    // }
+    const setMovies = (movies) => {
+        dispatch({
+            type: ACTIONS.ADD_MOVIE,
+            payload: movies
+        })
+    }
+
     return (
         <MovieContext.Provider
         value={{
             searchValue: state.searchValue,
+            movies: state.movies,
             setSearchValue,
+            setMovies
 
             
         }}>
