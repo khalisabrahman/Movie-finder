@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import { FavoriteComponent } from './'
-import { MovieContext } from '../context/MovieState'
+import { AddFavourites } from './AddFavourites';
+import { MovieContext } from '../context/MovieState';
 
 export const Movie = ({ movie }) => {
 	const { addFavoriteMovie } = useContext(MovieContext)
@@ -8,8 +8,8 @@ export const Movie = ({ movie }) => {
 	return (
 		<div>
 			<img src={movie.Poster} alt={movie.title}></img>
-			<div onClick={addFavoriteMovie}>
-				<FavoriteComponent />
+			<div onClick={() => addFavoriteMovie(movie)}>
+				<AddFavourites />
 			</div>
 		</div>
 	);

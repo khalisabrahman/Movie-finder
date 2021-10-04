@@ -17,6 +17,13 @@ function MovieReducer(state, action) {
 				...state,
 				favorites: [...state.favorites, action.payload]
 			}
+		case ACTIONS.ADD_FAVORITEID:
+			Object.defineProperty(state.favoritesId, action.payload, {
+				value: true
+			})
+			return {
+				...state,
+			}
 		default:
 			return state;
 	}

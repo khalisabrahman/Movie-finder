@@ -6,7 +6,8 @@ import MovieReducer from './MovieReducer';
 const initialState = {
 	searchValue: '',
 	movies: [],
-	favorites: []
+	favorites: [],
+	favoritesId: {}
 };
 // Create context
 export const MovieContext = createContext(initialState);
@@ -21,8 +22,6 @@ export const MovieProvider = (props) => {
 			type: ACTIONS.SET_SEARCH,
 			payload: value,
 		});
-
-		console.log(state.searchValue);
 	};
 
 	const setMovies = (movies) => {
@@ -33,11 +32,23 @@ export const MovieProvider = (props) => {
 	};
 
 	const addFavoriteMovie = (movie) => {
-		dispatch({
-			type: ACTIONS.ADD_FAVORITE,
-			payload: movie
-		})
+		if (movie.imdbID in state.favoritesId) return;
+		else {
+			dispatch({
+				type: ACTIONS.ADD_FAVORITE,
+				payload: movie,
+			});
+			console.log(movie);
+
+			dispatch({
+				type: ACTIONS.ADD_FAVORITEID,
+				payload: movie.imdbID
+			})
+			console.log(state.favoritesId);
+		}
 	}
+		
+	
 
 	return (
 		<MovieContext.Provider
@@ -45,9 +56,10 @@ export const MovieProvider = (props) => {
 				searchValue: state.searchValue,
 				movies: state.movies,
 				favorites: state.favorites,
+				favoritesId: state.favoritesId,
 				setSearchValue,
 				setMovies,
-				addFavoriteMovie
+				addFavoriteMovie,
 			}}
 		>
 			{props.children}
