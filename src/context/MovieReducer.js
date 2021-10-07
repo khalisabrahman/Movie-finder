@@ -24,6 +24,12 @@ function MovieReducer(state, action) {
 			return {
 				...state,
 			}
+		case ACTIONS.DELETE_FAVORITE: 
+		let newFavoriteList = state.favorites.filter((favorite) => favorite.imdbID !== action.payload);
+		return {
+			...state,
+			favorites: newFavoriteList
+		}
 		default:
 			return state;
 	}

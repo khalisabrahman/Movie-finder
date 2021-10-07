@@ -48,7 +48,12 @@ export const MovieProvider = (props) => {
 		}
 	}
 		
-	
+	const removeFavoriteMovie = (movie) => {
+		dispatch({
+			type: ACTIONS.DELETE_FAVORITE,
+			payload: movie.imdbID
+		})
+	}
 
 	return (
 		<MovieContext.Provider
@@ -60,6 +65,7 @@ export const MovieProvider = (props) => {
 				setSearchValue,
 				setMovies,
 				addFavoriteMovie,
+				removeFavoriteMovie
 			}}
 		>
 			{props.children}
