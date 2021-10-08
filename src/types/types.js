@@ -3,5 +3,6 @@ export const ACTIONS = {
     SET_SEARCH: 'set-search',
     ADD_FAVORITE: 'add-favorite',
     ADD_FAVORITEID: 'add-favoriteID',
-    DELETE_FAVORITE: 'remove-favorite'
+    DELETE_FAVORITE: 'delete-favorite',
+    DELETE_FAVORITEID: 'delete-favoriteID'
 }

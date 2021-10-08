@@ -52,6 +52,11 @@ export const MovieProvider = (props) => {
 		dispatch({
 			type: ACTIONS.DELETE_FAVORITE,
 			payload: movie.imdbID
+		});
+
+		dispatch({
+			type: ACTIONS.DELETE_FAVORITEID,
+			payload: movie.imdbID
 		})
 	}
 

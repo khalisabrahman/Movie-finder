@@ -15,21 +15,32 @@ function MovieReducer(state, action) {
 		case ACTIONS.ADD_FAVORITE:
 			return {
 				...state,
-				favorites: [...state.favorites, action.payload]
-			}
+				favorites: [...state.favorites, action.payload],
+			};
 		case ACTIONS.ADD_FAVORITEID:
 			Object.defineProperty(state.favoritesId, action.payload, {
-				value: true
-			})
+				value: true,
+			});
 			return {
 				...state,
+			};
+		case ACTIONS.DELETE_FAVORITE:
+			let newFavoriteList = state.favorites.filter(
+				(favorite) => favorite.imdbID !== action.payload
+			);
+			return {
+				...state,
+				favorites: newFavoriteList,
+			};
+		case ACTIONS.DELETE_FAVORITEID:
+			for (let id in state.favoritesId) {
+				if (id === action.payload) {
+					delete state.favoriteID.id;
+				}
 			}
-		case ACTIONS.DELETE_FAVORITE: 
-		let newFavoriteList = state.favorites.filter((favorite) => favorite.imdbID !== action.payload);
-		return {
-			...state,
-			favorites: newFavoriteList
-		}
+			return {
+				...state,
+			};
 		default:
 			return state;
 	}
