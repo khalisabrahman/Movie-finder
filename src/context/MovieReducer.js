@@ -13,16 +13,27 @@ function MovieReducer(state, action) {
 				searchValue: action.payload,
 			};
 		case ACTIONS.ADD_FAVORITE:
+			if (state.favoritesId.includes(action.payload.imdbID) === true) {
+				// console.log('Movie is already inside favourite list');
+				alert('Movie is already inside favourite list')
+				return {
+					...state
+				}
+			}
 			return {
 				...state,
 				favorites: [...state.favorites, action.payload],
 			};
 		case ACTIONS.ADD_FAVORITEID:
-			Object.defineProperty(state.favoritesId, action.payload, {
-				value: true,
-			});
+			if (state.favoritesId.includes(action.payload) === true) {
+				console.log('MovieID is already inside favouriteID list');
+				return {
+					...state
+				}
+			}
 			return {
 				...state,
+				favoritesId: [...state.favoritesId, action.payload]
 			};
 		case ACTIONS.DELETE_FAVORITE:
 			let newFavoriteList = state.favorites.filter(
@@ -33,13 +44,12 @@ function MovieReducer(state, action) {
 				favorites: newFavoriteList,
 			};
 		case ACTIONS.DELETE_FAVORITEID:
-			for (let id in state.favoritesId) {
-				if (id === action.payload) {
-					delete state.favoriteID.id;
-				}
-			}
+			let newFavoriteListId = state.favoritesId.filter(
+				(favoriteId) => favoriteId !== action.payload
+			);
 			return {
 				...state,
+				favoritesId: newFavoriteListId
 			};
 		default:
 			return state;

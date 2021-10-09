@@ -6,7 +6,7 @@ export const Movie = ({ movie }) => {
 	const { addFavoriteMovie , removeFavoriteMovie} = useContext(MovieContext)
 
 	return (
-		<div>
+		<div >
 			<img src={movie.Poster} alt={movie.title}></img>
 			<div onClick={() => addFavoriteMovie(movie)}>
 				<AddFavourites />

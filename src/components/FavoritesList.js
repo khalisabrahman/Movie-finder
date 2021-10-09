@@ -7,7 +7,7 @@ export const FavoritesList = () => {
    
 
     return (
-        <div>
+        <div style={{display: 'flex', flexDirection: 'row'}}>
             {favorites.map((favorite) => {
                 return <Movie movie={favorite}/>
             })}

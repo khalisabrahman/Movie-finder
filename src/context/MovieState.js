@@ -7,7 +7,7 @@ const initialState = {
 	searchValue: '',
 	movies: [],
 	favorites: [],
-	favoritesId: {}
+	favoritesId: [],
 };
 // Create context
 export const MovieContext = createContext(initialState);
@@ -32,33 +32,31 @@ export const MovieProvider = (props) => {
 	};
 
 	const addFavoriteMovie = (movie) => {
-		if (movie.imdbID in state.favoritesId) return;
-		else {
-			dispatch({
-				type: ACTIONS.ADD_FAVORITE,
-				payload: movie,
-			});
-			console.log(movie);
-
-			dispatch({
-				type: ACTIONS.ADD_FAVORITEID,
-				payload: movie.imdbID
-			})
-			console.log(state.favoritesId);
-		}
-	}
-		
-	const removeFavoriteMovie = (movie) => {
 		dispatch({
-			type: ACTIONS.DELETE_FAVORITE,
-			payload: movie.imdbID
+			type: ACTIONS.ADD_FAVORITE,
+			payload: movie,
 		});
 
 		dispatch({
+			type: ACTIONS.ADD_FAVORITEID,
+			payload: movie.imdbID,
+		});
+	};
+
+	const removeFavoriteMovie = (movie) => {
+		dispatch({
 			type: ACTIONS.DELETE_FAVORITEID,
-			payload: movie.imdbID
-		})
-	}
+			payload: movie.imdbID,
+		});
+
+		dispatch({
+			type: ACTIONS.DELETE_FAVORITE,
+			payload: movie.imdbID,
+		});
+
+		
+	
+	};
 
 	return (
 		<MovieContext.Provider
@@ -70,7 +68,7 @@ export const MovieProvider = (props) => {
 				setSearchValue,
 				setMovies,
 				addFavoriteMovie,
-				removeFavoriteMovie
+				removeFavoriteMovie,
 			}}
 		>
 			{props.children}
