@@ -53,9 +53,6 @@ export const MovieProvider = (props) => {
 			type: ACTIONS.DELETE_FAVORITE,
 			payload: movie.imdbID,
 		});
-
-		
-	
 	};
 
 	return (

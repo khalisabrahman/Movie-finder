@@ -1,5 +1,9 @@
 import { ACTIONS } from '../types/types';
 
+// const saveToLocalStorage = (items) => {
+// 	localStorage.setItem('react-movie-app-favourites', JSON.stringify(items));
+// }
+
 function MovieReducer(state, action) {
 	switch (action.type) {
 		case ACTIONS.ADD_MOVIE:
@@ -13,17 +17,20 @@ function MovieReducer(state, action) {
 				searchValue: action.payload,
 			};
 		case ACTIONS.ADD_FAVORITE:
-			if (state.favoritesId.includes(action.payload.imdbID) === true) {
-				// console.log('Movie is already inside favourite list');
-				alert('Movie is already inside favourite list')
+			if (state.favoritesId.length > 0 && state.favoritesId.includes(action.payload.imdbID) === true) {
+				console.log('Movie is already inside favourite list');
+				
 				return {
 					...state
 				}
 			}
+
+			// saveToLocalStorage([...state.favorites, action.payload]);
 			return {
 				...state,
 				favorites: [...state.favorites, action.payload],
 			};
+			
 		case ACTIONS.ADD_FAVORITEID:
 			if (state.favoritesId.includes(action.payload) === true) {
 				console.log('MovieID is already inside favouriteID list');

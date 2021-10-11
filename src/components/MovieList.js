@@ -1,17 +1,24 @@
 import React, { useContext } from 'react';
+import { AddFavourites } from './AddFavourites';
 import { Movie } from './Movie';
-import {MovieContext} from '../context/MovieState';
-
+import { MovieContext } from '../context/MovieState';
 
 
 export const MovieList = () => {
-	const { movies } = useContext(MovieContext);
+	const { movies, addFavoriteMovie } = useContext(MovieContext);
+
 	return (
 		<>
-			<div style={{display: 'flex', flexDirection: 'row'}}>
-			{movies.map((movie) => {
-				return <Movie style={{border: '2px solid red'}} movie={movie} ></Movie>;
-			})}
+			<div className='container--pall movielist'>
+				{movies.map((movie) => {
+					return (
+						<Movie
+							movie={movie}
+							favouriteComponent={AddFavourites}
+							handleFavouriteBtn={addFavoriteMovie}
+						></Movie>
+					);
+				})}
 			</div>
 		</>
 	);

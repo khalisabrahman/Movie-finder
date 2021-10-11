@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@700&display=swap');
+
+html {
+    font-size: 100%;
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+a,
+a:visited,
+a:hover {
+    text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #141414;
+    font-family: 'Lora', serif;
+    color:white;
+    
+    
+}
+
+
+.container {
+    margin: 0 auto;
+
+    &--pall {
+        padding-top: 2rem;
+        padding-right: 1.375rem;
+        padding-bottom: 2rem;
+        padding-left: 1.375rem;
+
+    }
+}
+
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+
+    &-jc-sb {
+        justify-content: space-between;
+    }
+}
+
+.button {
+    background-color: pink;
+    border-radius: 50px;
+    padding: 1.375rem 2.0625rem;
+    transition: all 150ms ease-in-out;
+
+    &:hover {
+        background-color: rgba(255,255,255, 0.25);
+    }
+    
+   
+    
+}
