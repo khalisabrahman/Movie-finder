@@ -2,12 +2,18 @@
     position: relative;
     width: 300px;
     height: 437px;
+    transition: transform 0.2s;
+    
+    &:hover {
+        transform: scale(1.1);
+    }
 
     &--image {
         width: 100%;
         height: 100%;
         object-fit: contain;
     }
+   
 
     &--favourite {
         position: absolute;
