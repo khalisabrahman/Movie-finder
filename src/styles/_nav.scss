@@ -1,0 +1,12 @@
+.nav {
+
+    > a {
+        color: white;
+
+        &:not(:last-child) {
+            padding-right: 10px;
+        }
+    }
+    
+
+}

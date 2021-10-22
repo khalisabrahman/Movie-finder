@@ -8,7 +8,7 @@ export const About = () => {
 			<div className='container--pall about'>
 				<h2 className='title'>About</h2>
 				<p>
-					A web app that uses React and the OMdb api to obtain movie information and images.
+					A web app that uses React and the OMdb api to obtain movie information and poster images.
 				</p>
                 <p>Version 1.0.0</p>
 			</div>

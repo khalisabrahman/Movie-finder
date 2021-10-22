@@ -1,16 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 export const Navbar = () => {
-  
+	return (
+		<div className='flex flex-jc-sb'>
+			<h1 className='container--pall logo'>Movie Finder</h1>
 
-    return (
-        <div className='flex'>
-            <h1 className='container--pall logo'>Movie Finder</h1>
-            <Link to="/about">About</Link>
-            <Link to="/">Home</Link>
-        </div>
-    )
-}
-
-
+			<nav className='container--pall nav'>
+				<Link className='nav' to='/about'>About</Link>
+				<Link to='/'>Home</Link>
+			</nav>
+		</div>
+	);
+};
