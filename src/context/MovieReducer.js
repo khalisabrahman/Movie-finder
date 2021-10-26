@@ -58,6 +58,11 @@ function MovieReducer(state, action) {
 				...state,
 				favoritesId: newFavoriteListId
 			};
+		case ACTIONS.SET_MODAL:
+			return {
+				...state,
+				modal: !state.modal
+			}
 		default:
 			return state;
 	}

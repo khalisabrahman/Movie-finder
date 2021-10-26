@@ -5,7 +5,7 @@ import { MovieContext } from '../context/MovieState';
 let omdbApi = process.env.REACT_APP_OMDB_API;
 
 export const Searchbar = () => {
-	const { searchValue, setSearchValue, movies, setMovies, addFavoriteMovie } =
+	const { searchValue, setSearchValue, setMovies } =
 		useContext(MovieContext);
 
 	const getMoviesRequest = async (searchValue) => {

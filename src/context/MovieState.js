@@ -8,6 +8,7 @@ const initialState = {
 	movies: [],
 	favorites: [],
 	favoritesId: [],
+	modal: true
 };
 // Create context
 export const MovieContext = createContext(initialState);
@@ -55,6 +56,13 @@ export const MovieProvider = (props) => {
 		});
 	};
 
+	const setModal = () => {
+		dispatch({
+			type: ACTIONS.SET_MODAL
+			
+		})
+	}
+
 	return (
 		<MovieContext.Provider
 			value={{
@@ -62,10 +70,12 @@ export const MovieProvider = (props) => {
 				movies: state.movies,
 				favorites: state.favorites,
 				favoritesId: state.favoritesId,
+				modal: state.modal,
 				setSearchValue,
 				setMovies,
 				addFavoriteMovie,
 				removeFavoriteMovie,
+				setModal
 			}}
 		>
 			{props.children}
