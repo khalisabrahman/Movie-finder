@@ -8,7 +8,7 @@ const initialState = {
 	movies: [],
 	favorites: [],
 	favoritesId: [],
-	modal: true
+	modal: false
 };
 // Create context
 export const MovieContext = createContext(initialState);

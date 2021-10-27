@@ -7,6 +7,8 @@ import { MovieContext } from '../context/MovieState';
 export const MovieList = () => {
 	const { movies, addFavoriteMovie } = useContext(MovieContext);
 	
+	
+	
 	return (
 		<>
 			<div className='container--pall movielist'>
