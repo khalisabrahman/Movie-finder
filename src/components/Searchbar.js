@@ -24,7 +24,7 @@ export const Searchbar = () => {
 		getMoviesRequest(searchValue);
 	}, [searchValue]);
 
-	// IN WORK LOCAL STORAGE
+	//TODO LOCAL STORAGE
 	// useEffect(() => {
 	// 	const movieFavourites = JSON.parse(localStorage.getItem('react-movie-app-favourites'));
 	// 	addFavoriteMovie(movieFavourites);

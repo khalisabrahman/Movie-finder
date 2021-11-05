@@ -7,8 +7,8 @@ export const Movie = ({ movie, favouriteComponent, handleFavouriteBtn }) => {
 	const { setModal } = useContext(MovieContext);
 
 	return (
-		<div >
-			<div className='movie'  onClick={() => setModal()}>
+		<div className='movie' >
+			<div onClick={() => setModal()}>
 				<img src={movie.Poster} alt={movie.title} class='movie--image'></img>
 			</div>
 			<div className='movie--favourite' onClick={() => handleFavourite(movie)}>
