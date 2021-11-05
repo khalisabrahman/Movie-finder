@@ -9,7 +9,7 @@ export const Searchbar = () => {
 		useContext(MovieContext);
 
 	const getMoviesRequest = async (searchValue) => {
-		const url = `http://www.omdbapi.com/?s=${searchValue}&apikey=${omdbApi}`;
+		const url = `http://www.omdbapi.com/?s=${searchValue}&apikey=${process.env.REACT_APP_OMDB_API}`;
 
 		const response = await fetch(url);
 		const responseJson = await response.json();
